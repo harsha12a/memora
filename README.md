@@ -1,40 +1,88 @@
-## Create Aptos Dapp Boilerplate Template
+# MEMORA
 
-The Boilerplate template provides a starter dapp with all necessary dapp infrastructure and a simple wallet info implementation, transfer APT and a simple message board functionality to send and read a message on chain.
+### Team Name  -> **Vertex**
 
-## Read the Boilerplate template docs
+### Members
 
-To get started with the Boilerplate template and learn more about the template functionality and usage, head over to the [Boilerplate template docs](https://learn.aptoslabs.com/en/dapp-templates/boilerplate-template)
+| Name                          | Email                     | LinkedIn                                           |
+|-------------------------------|---------------------------|---------------------------------------------------|
+| Peddibhotla Sree Satya Harsha | harsha.pss2005@gmail.com  | [LinkedIn](https://www.linkedin.com/in/harsha-pss/) |
+| Pathivada Harsha Vardhan      | harshabambu@gmail.com     | [LinkedIn](https://www.linkedin.com/in/harshabambu/) |
+| Parasa Kamal Siddardha        | siddhuparsa99@gmail.com  | [LinkedIn](https://www.linkedin.com/in/siddhu-parasa/) |
 
-## The Boilerplate template provides:
+---
 
-- **Folder structure** - A pre-made dapp folder structure with a `frontend` and `contract` folders.
-- **Dapp infrastructure** - All required dependencies a dapp needs to start building on the Aptos network.
-- **Wallet Info implementation** - Pre-made `WalletInfo` components to demonstrate how one can use to read a connected Wallet info.
-- **Transfer APT implementation** - Pre-made `transfer` components to send APT to an address.
-- **Message board functionality implementation** - Pre-made `message` components to send and read a message on chain
+### Problem Statement
+Current cloud services lack tamper-proof, location-restricted, and user-owned data management features. A secure, decentralized platform is needed to store and share sensitive data with **time-lock**, **geo-lock**, and **blockchain-based access control**.
 
-## What tools the template uses?
+---
 
-- React framework
-- Vite development tool
-- shadcn/ui + tailwind for styling
-- Aptos TS SDK
-- Aptos Wallet Adapter
-- Node based Move commands
-- [Vite-pwa](https://vite-pwa-org.netlify.app/)
+### Project Description
+Current cloud services don’t give users full control or guarantee security for sensitive data. A decentralized platform can fix this by letting users store encrypted files with:
 
-## What Move commands are available?
+- **Time-locks**
+- **Geo-locks**
+- **Blockchain-based access control**
 
-The tool utilizes [aptos-cli npm package](https://github.com/aptos-labs/aptos-cli) that lets us run Aptos CLI in a Node environment.
+Users can create personal or collaborative **“time capsules”** that:
 
-Some commands are built-in the template and can be ran as a npm script, for example:
+- Unlock in the future
+- Share files securely with selected people
+- Restrict access to specific locations
 
-- `npm run move:publish` - a command to publish the Move contract
-- `npm run move:test` - a command to run Move unit tests
-- `npm run move:compile` - a command to compile the Move contract
-- `npm run move:upgrade` - a command to upgrade the Move contract
-- `npm run dev` - a command to run the frontend locally
-- `npm run deploy` - a command to deploy the dapp to Vercel
+All files remain encrypted, and smart contracts enforce access rules. This makes the system **tamper-proof, private, and suitable for personal, corporate, or sensitive operations**.
 
-For all other available CLI commands, can run `npx aptos` and see a list of all available commands.
+---
+
+## Smart Contracts
+
+### 1. Blockchain Time Capsule
+**Purpose:** Store encrypted content metadata with a release date.
+
+**Key Variables:**
+
+- `capsule_id` – Unique identifier for each capsule  
+- `unlock_timestamp` – Block time when capsule can be opened  
+- `owner` – Creator’s wallet address  
+- `ipfs_hash` – Link to encrypted content in decentralized storage  
+- `encrypted_key` – Stored encrypted; revealed only after unlock time  
+
+**Functions:**
+
+- `create_capsule(...)` – Creates a new capsule with metadata  
+- `unlock_capsule(capsule_id)` – Releases key if `block_time >= unlock_timestamp`  
+- `view_capsule(capsule_id)` – Fetch metadata (no decryption)  
+
+---
+
+### 2. Geo-Locked Capsule
+**Purpose:** Allow access only within a specific geographical area.
+
+**Key Variables:**
+
+- `longitude` – Target longitude coordinate  
+- `latitude` – Target latitude coordinate  
+- `radius` – Allowed range from target coordinates  
+- `unlock_timestamp` – Optional; can combine with a time lock  
+- `ipfs_hash` – Link to encrypted data in decentralized storage  
+
+**Functions:**
+
+- `create_geo_capsule(longitude, latitude, radius, ipfs_hash, unlock_timestamp?)` – Create capsule restricted to a coordinate range  
+- `verify_location(capsule_id, user_longitude, user_latitude)` – Check if user is within allowed radius  
+- `(Future)` `verify_location_hash(capsule_id, location_proof)` – Use hashed GPS coordinates with an oracle for secure validation  
+
+---
+
+## Screenshots
+
+### After Connecting Petra & Uploading an Image
+![Screenshot 1](./images/image1.png)
+![Screenshot 2](./images/image2.png)
+
+### Unlocked Case
+![Unlocked 1](./images/image3.png)
+![Unlocked 2](./images/image4.png)
+
+### Locked Case
+![Locked](./images/image5.png)

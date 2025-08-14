@@ -421,7 +421,7 @@ async function retrieveImageAfterUnlock(ownerAddr, capsuleId) {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500 mb-2">Digital Vault</h1>
+          <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500 mb-2">Memora</h1>
           <p className="text-blue-600">Secure your files on the Aptos blockchain with chunked upload</p>
         </div>
 
